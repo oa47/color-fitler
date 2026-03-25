@@ -11,10 +11,8 @@
     </style>
 </head>
 <body>
-
     <h1>Blueprint Background Remover</h1>
-    <p>Upload a PDF floor plan to strip out the orange/brown background colors.</p>
-
+    <p>Upload a PDF to strip out the background colors.</p>
     <div class="upload-box">
         <form action="/process" method="POST" enctype="multipart/form-data">
             <input type="file" name="pdf_file" accept=".pdf" required>
@@ -22,6 +20,5 @@
             <button type="submit">Clean My PDF</button>
         </form>
     </div>
-
 </body>
 </html>
