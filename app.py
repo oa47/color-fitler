@@ -43,12 +43,21 @@ def process_pdf():
         
         hsv = cv2.cvtColor(image_bgr, cv2.COLOR_BGR2HSV)
         
-        # The color net we fine-tuned
+        # 1. The color net for Orange and Brown
         lower_brown_orange = np.array([3, 60, 120])
         upper_brown_orange = np.array([20, 255, 255])
-        mask = cv2.inRange(hsv, lower_brown_orange, upper_brown_orange)
+        mask_orange = cv2.inRange(hsv, lower_brown_orange, upper_brown_orange)
         
-        image_bgr[mask > 0] = (255, 255, 255)
+        # 2. The NEW color net for the Beige/Off-White background
+        lower_beige = np.array([0, 0, 210]) 
+        upper_beige = np.array([179, 60, 255])
+        mask_beige = cv2.inRange(hsv, lower_beige, upper_beige)
+
+        # 3. Combine both nets into one master mask
+        combined_mask = cv2.bitwise_or(mask_orange, mask_beige)
+        
+        # 4. Turn everything caught in the master mask pure white
+        image_bgr[combined_mask > 0] = (255, 255, 255)
         
         final_rgb = cv2.cvtColor(image_bgr, cv2.COLOR_BGR2RGB)
         pil_image = Image.fromarray(final_rgb)
