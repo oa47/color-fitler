@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blueprint Cleaner</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        .upload-box { border: 2px dashed #ccc; padding: 40px; width: 300px; margin: 0 auto; }
+        button { margin-top: 20px; padding: 10px 20px; background-color: #007bff; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <h1>Blueprint Background Remover</h1>
+    <p>Upload a PDF floor plan to strip out the orange/brown background colors.</p>
+
+    <div class="upload-box">
+        <form action="/process" method="POST" enctype="multipart/form-data">
+            <input type="file" name="pdf_file" accept=".pdf" required>
+            <br>
+            <button type="submit">Clean My PDF</button>
+        </form>
+    </div>
+
+</body>
+</html>
